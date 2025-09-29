@@ -1,8 +1,8 @@
 import express from "express";
 import productRoutes from './api/routers/products.routes.js';
+import 'dotenv/config.js';
 
 const app = express();
-const port = 3000;
 
 app.set('trust proxy', 1);
 app.use(express.json());
@@ -13,6 +13,6 @@ app.get('/health', (req, res) => {
 
 app.use('/api', productRoutes);
 
-app.listen(port, 'localhost', () => {
-    console.log('API rodando na porta 3000');
+app.listen(process.env.SERVER_PORT, 'localhost', () => {
+    console.log(`API rodando na porta ${process.env.SERVER_PORT}`);
 });
