@@ -3,7 +3,10 @@ import db from "../../db/models/index.js";
 const { Products } = db;
 
 export const createProduct = async (req, res) => {
-  const { name, image, idCateg } = req.body;
+  const { name, idCateg } = req.body;
+  
+  const image = req.file ? `/images/products/${req.file.filename}` : null;
+
   try {
     const newProduct = await Products.create({ name, image, idCateg });
     res.status(201).json(newProduct);

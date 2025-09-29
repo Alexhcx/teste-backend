@@ -1,9 +1,10 @@
 import { Router } from 'express';
 import * as productController from '../controllers/products.controller.js';
+import upload from '../middleware/upload.js';
 
 const router = Router();
 
-router.post('/products', productController.createProduct);
+router.post('/products', upload.single('image'), productController.createProduct);
 
 router.get('/products', productController.getAllProducts);
 

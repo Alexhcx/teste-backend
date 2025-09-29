@@ -9,8 +9,12 @@ Content-Type: application/json
 {
   "name": "Notebook Gamer",
   "image": "https://exemplo.com/notebook.jpg",
-  "idCateg": 
+  "idCateg": 1
 }
+
+###
+
+GET  http://100.25.168.179/api/products
 
 ###
 # READ - Obtém todos os produtos
