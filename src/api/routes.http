@@ -1,0 +1,36 @@
+@api = http://localhost:3000/api
+
+###
+# CREATE - Cria um novo produto
+# @name createProduct
+POST {{api}}/products
+Content-Type: application/json
+
+{
+  "name": "Notebook Gamer",
+  "image": "https://exemplo.com/notebook.jpg",
+  "idCateg": 
+}
+
+###
+# READ - Obtém todos os produtos
+GET {{api}}/products
+
+###
+# READ BY ID - Obtém um produto específico pelo ID
+GET {{api}}/products/34b3bf08-9c9c-4051-85e0-bde75c877d44
+
+###
+# UPDATE - Atualiza um produto existente
+PUT {{api}}/products/34b3bf08-9c9c-4051-85e0-bde75c877d44
+Content-Type: application/json
+
+{
+  "name": "Notebook Gamer Atualizado",
+  "image": "https://exemplo.com/notebook-novo.jpg",
+  "idCateg": 5
+}
+
+###
+# DELETE - Deleta um produto
+DELETE {{api}}/products/34b3bf08-9c9c-4051-85e0-bde75c877d44
