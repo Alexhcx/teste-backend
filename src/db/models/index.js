@@ -4,7 +4,7 @@ import { basename, dirname, join } from 'path';
 import { fileURLToPath, pathToFileURL } from 'url'; 
 import Sequelize, { DataTypes } from 'sequelize';
 import { env as _env } from 'process';
-import configModule from '../config/config.js';
+import configModule from '../config/config.cjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
