@@ -13,6 +13,6 @@ app.get('/health', (req, res) => {
 
 app.use('/api', productRoutes);
 
-app.listen(3000, 'localhost', () => {
+app.listen(port, 'localhost', () => {
     console.log('API rodando na porta 3000');
 });
