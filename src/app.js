@@ -26,6 +26,6 @@ app.get('/health', (req, res) => {
 
 app.use('/api', productRoutes);
 
-app.listen(port, 'localhost', () => {
+app.listen(port, () => {
     console.log(`API rodando na porta ${port}`);
 });
