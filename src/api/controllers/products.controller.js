@@ -4,7 +4,7 @@ const { Products } = db;
 
 export const createProduct = async (req, res) => {
   const { name, idCateg } = req.body;
-  
+
   const image = req.file ? `/images/products/${req.file.filename}` : null;
 
   try {
@@ -41,16 +41,39 @@ export const getProductById = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
   const { id } = req.params;
-  const { name, image, idCateg } = req.body;
+
   try {
     const product = await Products.findByPk(id);
     if (!product) {
       return res.status(404).json({ message: "Produto não encontrado" });
     }
-    await product.update({ name, image, idCateg });
+
+    const { name, idCateg } = req.body;
+    const updatedData = {};
+
+    if (name) {
+      updatedData.name = name;
+    }
+    if (idCateg) {
+      updatedData.idCateg = parseInt(idCateg, 10);
+    }
+    if (req.file) {
+      updatedData.image = `/images/products/${req.file.filename}`;
+    }
+
+    if (Object.keys(updatedData).length > 0) {
+      await product.update(updatedData);
+    }
+
     res.status(200).json(product);
   } catch (error) {
-    res.status(500).json({ message: "Erro ao atualizar o produto", error });
+    console.error("Erro ao atualizar o produto:", error);
+    res
+      .status(500)
+      .json({
+        message: "Erro no servidor ao atualizar o produto.",
+        error: error.message,
+      });
   }
 };
 
