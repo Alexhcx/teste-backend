@@ -1,18 +1,18 @@
 import express from "express";
 import productRoutes from './api/routers/products.routes.js';
-import cors from 'cors';
 
 const app = express();
 const port = 3000;
 
+app.set('trust proxy', 1);
 app.use(express.json());
 
-app.use(cors({
-  origin: 'http://localhost:3001'
-}));
+app.get('/health', (req, res) => {
+    res.status(200).json({ status: 'OK', timestamp: new Date().toISOString() });
+});
 
 app.use('/api', productRoutes);
 
-app.listen(port, () => {
-  console.log(`Connection ok on port ${port}`);
+app.listen(3000, 'localhost', () => {
+    console.log('API rodando na porta 3000');
 });
